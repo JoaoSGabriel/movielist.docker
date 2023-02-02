@@ -15,3 +15,13 @@ export async function putProfile(token, body) {
 
   return response.data;
 }
+
+export async function getManyProfiles(token, username) {
+  const response = await api.get(`/users/profile/find?username=${username}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}

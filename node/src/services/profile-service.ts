@@ -18,9 +18,16 @@ async function updateProfile(userId: number, body: object) {
   return;
 }
 
+async function findUser(username: string) {
+  const users = await profileRepository.filterByUsername(username);
+
+  return users;
+}
+
 const profileService = {
   getProfile,
   updateProfile,
+  findUser,
 };
 
 export default profileService;

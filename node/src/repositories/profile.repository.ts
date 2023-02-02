@@ -15,6 +15,16 @@ async function findByUsername(username: string) {
   });
 }
 
+async function filterByUsername(username: string) {
+  return prisma.profile.findMany({
+    where: {
+      username: {
+        startsWith: username,
+      },
+    },
+  });
+}
+
 async function updateUsernameProfile(
   userId: number,
   data: Prisma.ProfileUpdateInput
@@ -35,6 +45,7 @@ const profileRepository = {
   create,
   findByUsername,
   updateUsernameProfile,
+  filterByUsername,
 };
 
 export default profileRepository;

@@ -1,19 +1,29 @@
+import { useState } from "react";
 import styled from "styled-components";
+
 import useToken from "../../hooks/useToken";
+
 import AuthManage from "./AuthManage";
 import UserManage from "./UserManage";
 import Logo from "./Logo";
 import Nav from "./Nav";
+import SearchUsers from "./SearchUsers";
 
 export default function Navbar() {
+  const [searching, setSearching] = useState(false);
+
   const token = useToken();
 
   return (
     <Container>
       <Wrappler>
         <Logo />
-        <Nav />
-        {token ? <UserManage /> : <AuthManage />}
+        {searching ? <SearchUsers setSearching={setSearching} /> : <Nav />}
+        {token ? (
+          <UserManage searching={searching} setSearching={setSearching} />
+        ) : (
+          <AuthManage />
+        )}
       </Wrappler>
     </Container>
   );

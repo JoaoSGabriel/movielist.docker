@@ -47,3 +47,19 @@ export async function putProfile(req: AuthenticatedRequest, res: Response) {
     res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
   }
 }
+
+export async function getProfiles(req: AuthenticatedRequest, res: Response) {
+  const { username } = req.query;
+
+  if (typeof username !== "string") {
+    return res.sendStatus(httpStatus.BAD_REQUEST);
+  }
+
+  try {
+    const profiles = await profileService.findUser(username);
+
+    return res.status(httpStatus.OK).send(profiles);
+  } catch (error) {
+    res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+  }
+}

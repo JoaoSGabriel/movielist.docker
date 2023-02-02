@@ -85,7 +85,7 @@ const Wrappler = styled.div`
 `;
 
 const CrewCard = styled.div`
-  width: 320px;
+  width: 290px;
   height: auto;
   background-color: #fafafa;
   margin: 0 30px 30px 0;
@@ -97,7 +97,7 @@ const CrewCard = styled.div`
   }
 
   @media screen and (max-width: 1366px) {
-    max-width: 290px;
+    max-width: 950px;
     margin: 0 25px 25px 0;
 
     img {

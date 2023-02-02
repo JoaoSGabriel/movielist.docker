@@ -5,6 +5,7 @@ import { validateBody } from "../middlewares/validation-middleware";
 import { usersPost } from "../controllers/users-controller";
 import {
   getProfileByUsername,
+  getProfiles,
   putProfile,
 } from "../controllers/profile-controller";
 import { authenticateToken } from "../middlewares/authentication-middleware";
@@ -15,6 +16,7 @@ usersRouter
   .post("/", validateBody(createUserSchema), usersPost)
   .get("/profile", getProfileByUsername)
   .all("/*", authenticateToken)
-  .put("/profile", putProfile);
+  .put("/profile", putProfile)
+  .get("/profile/find", getProfiles);
 
 export { usersRouter };

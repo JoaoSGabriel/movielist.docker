@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { RiUserSearchFill } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoPersonOutline } from "react-icons/io5";
 import { ImExit } from "react-icons/im";
 
 import UserContext from "../contexts/UserContext";
 
-export default function UserManage() {
+export default function UserManage({ searching, setSearching }) {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
@@ -32,27 +33,35 @@ export default function UserManage() {
   }
 
   return (
-    <Wrapper
-      onMouseEnter={() => setIsActive(true)}
-      onMouseLeave={() => setIsActive(false)}
-    >
-      <img src={getImage()} alt="profileImg"></img>
-      <ToggleArrow isActive={isActive}>
-        <IoIosArrowDown />
-      </ToggleArrow>
-      <ButtonWrapper ref={dropdownRef} isActive={isActive}>
-        <span onClick={logout}>
-          <ImExit style={{ margin: "0 10px" }} /> logout
-        </span>
-        <span
+    <>
+      <Wrapper
+        onMouseEnter={() => setIsActive(true)}
+        onMouseLeave={() => setIsActive(false)}
+      >
+        <RiUserSearchFill
+          className="icon"
           onClick={() => {
-            navigate(`/profile/${profileData.username}`);
+            setSearching(!searching);
           }}
-        >
-          <IoPersonOutline style={{ margin: "0 10px" }} /> Perfil
-        </span>
-      </ButtonWrapper>
-    </Wrapper>
+        />
+        <img src={getImage()} alt="profileImg"></img>
+        <ToggleArrow isActive={isActive}>
+          <IoIosArrowDown />
+        </ToggleArrow>
+        <ButtonWrapper ref={dropdownRef} isActive={isActive}>
+          <span onClick={logout}>
+            <ImExit style={{ margin: "0 10px" }} /> logout
+          </span>
+          <span
+            onClick={() => {
+              navigate(`/profile/${profileData.username}`);
+            }}
+          >
+            <IoPersonOutline style={{ margin: "0 10px" }} /> Perfil
+          </span>
+        </ButtonWrapper>
+      </Wrapper>
+    </>
   );
 }
 
@@ -65,6 +74,14 @@ const Wrapper = styled.div`
   color: #bcbedc;
   cursor: pointer;
   position: relative;
+
+  .icon {
+    font-size: 1.7rem;
+    position: absolute;
+    left: -37px;
+    top: calc(43 - (27.19 / 2));
+    cursor: pointer;
+  }
 
   img {
     width: 53px;
