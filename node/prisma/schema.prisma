@@ -1,0 +1,138 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+    id              Int               @id @default(autoincrement())
+    email           String            @unique @db.VarChar(255)
+    password        String?           @db.VarChar(255)
+    createdAt       DateTime          @default(now())
+    updatedAt       DateTime          @updatedAt
+    Session         Session[]
+    Profile         Profile[]
+    MovieFavorits   MovieFavorits[]
+    PlaningSee      PlaningSee[]
+    Watched         Watched[]
+    History         History[]
+    Comment         Comment[]
+    Like            Like[]
+    Rated           Rated[]
+}
+
+model Profile {
+    id              Int               @id @default(autoincrement())
+    userId          Int               @unique
+    User            User              @relation(fields: [userId], references: [id])
+    username        String            @unique @db.VarChar(255)
+    photo_path      String?
+    backdrop_path   String?        
+    createdAt       DateTime          @default(now())
+    updatedAt       DateTime          @updatedAt
+}
+
+model Session {
+    id        Int      @id @default(autoincrement())
+    userId    Int
+    User      User     @relation(fields: [userId], references: [id])
+    token     String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model MovieFavorits {
+    id                Int      @id @default(autoincrement())
+    userId            Int
+    User              User     @relation(fields: [userId], references: [id])
+    historyId         Int
+    History           History  @relation(fields: [historyId], references: [id])
+    tmdbMovieId       Int
+    tmdbTitle         String
+    tmbdPoster_path   String
+    createdAt         DateTime @default(now())
+    updatedAt         DateTime @updatedAt
+}
+
+model PlaningSee {
+    id                Int      @id @default(autoincrement())
+    userId            Int
+    User              User     @relation(fields: [userId], references: [id])
+    historyId         Int
+    History           History  @relation(fields: [historyId], references: [id])
+    tmdbMovieId       Int
+    tmdbTitle         String
+    tmbdPoster_path   String
+    createdAt         DateTime @default(now())
+    updatedAt         DateTime @updatedAt
+}
+
+model Watched {
+    id                Int      @id @default(autoincrement())
+    userId            Int
+    User              User     @relation(fields: [userId], references: [id])
+    historyId         Int
+    History           History  @relation(fields: [historyId], references: [id])
+    tmdbMovieId       Int
+    tmdbTitle         String
+    tmbdPoster_path   String
+    createdAt         DateTime @default(now())
+    updatedAt         DateTime @updatedAt
+}
+
+model Rated {
+    id                Int      @id @default(autoincrement())
+    userId            Int
+    User              User     @relation(fields: [userId], references: [id])
+    rate              Decimal
+    tmdbMovieId       Int
+    createdAt         DateTime @default(now())
+    updatedAt         DateTime @updatedAt
+}
+
+model History {
+    id                Int           @id @default(autoincrement())
+    userId            Int
+    User              User          @relation(fields: [userId], references: [id])
+    type              HistoryType
+    createdAt         DateTime      @default(now())
+    updatedAt         DateTime      @updatedAt
+    Watched           Watched[]
+    PlaningSee        PlaningSee[]
+    MovieFavorits     MovieFavorits[]
+    Comment           Comment[]
+    Like              Like[]
+}
+
+enum HistoryType {
+    WATCHED
+    PLANNING
+    LIKED
+}
+
+model Comment {
+    id                Int           @id @default(autoincrement())
+    userId            Int
+    User              User          @relation(fields: [userId], references: [id])
+    historyId         Int
+    History           History       @relation(fields: [historyId], references: [id])
+    comment           String
+    createdAt         DateTime      @default(now())
+    updatedAt         DateTime      @updatedAt
+}
+
+model Like {
+    id                Int           @id @default(autoincrement())
+    userId            Int
+    User              User          @relation(fields: [userId], references: [id])
+    historyId         Int
+    History           History       @relation(fields: [historyId], references: [id])
+    createdAt         DateTime      @default(now())
+    updatedAt         DateTime      @updatedAt
+}

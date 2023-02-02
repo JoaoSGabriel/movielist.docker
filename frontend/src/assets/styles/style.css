@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap");
+
+* {
+  box-sizing: border-box;
+  transition: all ease 0.2s;
+}
+
+body {
+  font-family: "Lexend Deca", sans-serif;
+  background-color: #edf1f5;
+  padding: 75px 0 100px 0;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (max-width: 1366px) {
+  body {
+    padding: 65px 0 0 0;
+  }
+}
