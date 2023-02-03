@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useTrendingMovie from "../../hooks/apiUtils/useTrendingMovies";
 
-import MediaCard from "../MediaCard";
+import MediaCard from "../mediaCard/index";
 import { Container, List, Text } from "./ListStyle";
 import Loader from "./Loader";
 

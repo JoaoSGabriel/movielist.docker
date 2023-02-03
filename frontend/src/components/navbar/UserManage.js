@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { AiOutlineGithub } from "react-icons/ai";
 import { RiUserSearchFill } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoPersonOutline } from "react-icons/io5";
@@ -33,17 +34,24 @@ export default function UserManage({ searching, setSearching }) {
   }
 
   return (
-    <>
+    <Div>
+      <a
+        href="https://github.com/JoaoSGabriel/movielist.docker"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <AiOutlineGithub className="icon" />
+      </a>
+      <RiUserSearchFill
+        className="icon"
+        onClick={() => {
+          setSearching(!searching);
+        }}
+      />
       <Wrapper
         onMouseEnter={() => setIsActive(true)}
         onMouseLeave={() => setIsActive(false)}
       >
-        <RiUserSearchFill
-          className="icon"
-          onClick={() => {
-            setSearching(!searching);
-          }}
-        />
         <img src={getImage()} alt="profileImg"></img>
         <ToggleArrow isActive={isActive}>
           <IoIosArrowDown />
@@ -61,9 +69,25 @@ export default function UserManage({ searching, setSearching }) {
           </span>
         </ButtonWrapper>
       </Wrapper>
-    </>
+    </Div>
   );
 }
+
+const Div = styled.div`
+  display: flex;
+  align-items: center;
+
+  .icon {
+    margin: 0 20px 0 0;
+    font-size: 1.7rem;
+    cursor: pointer;
+
+    :hover {
+      transform: scale(1.1);
+      filter: brightness(2);
+    }
+  }
+`;
 
 const Wrapper = styled.div`
   width: auto;
@@ -74,14 +98,6 @@ const Wrapper = styled.div`
   color: #bcbedc;
   cursor: pointer;
   position: relative;
-
-  .icon {
-    font-size: 1.7rem;
-    position: absolute;
-    left: -37px;
-    top: calc(43 - (27.19 / 2));
-    cursor: pointer;
-  }
 
   img {
     width: 53px;

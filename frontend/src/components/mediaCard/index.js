@@ -1,7 +1,13 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import Buttons from "./Buttons";
+
 export default function MediaCard({ info, style }) {
+  const [isActive, setIsActive] = useState(false);
+  const navigate = useNavigate();
+
   function contentImage() {
     if (info?.tmbdPoster_path) {
       return info.tmbdPoster_path;
@@ -13,7 +19,6 @@ export default function MediaCard({ info, style }) {
 
     return "https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg";
   }
-  const navigate = useNavigate();
 
   function seeMore() {
     if (info.tmdbMovieId) {
@@ -24,8 +29,13 @@ export default function MediaCard({ info, style }) {
   }
 
   return (
-    <Container onClick={seeMore} style={style}>
-      <img src={contentImage()} alt="loaded Banner" />
+    <Container
+      style={style}
+      onMouseEnter={() => setIsActive(true)}
+      onMouseLeave={() => setIsActive(false)}
+    >
+      <Buttons isActive={isActive} info={info} />
+      <img src={contentImage()} alt="loaded Banner" onClick={seeMore} />
       {info?.tmdbTitle ? <h1>{info?.tmdbTitle}</h1> : <h1>{info?.title}</h1>}
     </Container>
   );
@@ -33,13 +43,14 @@ export default function MediaCard({ info, style }) {
 
 const Container = styled.div`
   margin: 0 0 0px 0;
-  cursor: pointer;
   background: none;
+  position: relative;
 
   img {
     width: 210px;
     height: 315px;
     border-radius: 4px;
+    cursor: pointer;
   }
   h1 {
     width: 210px;

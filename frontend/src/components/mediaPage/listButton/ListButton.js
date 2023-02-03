@@ -16,7 +16,9 @@ export default function ListButton({ movieDetails, token }) {
     >
       Listar
       <Menu>
-        <IoIosArrowDown />
+        <ToggleArrow isActive={isActive}>
+          <IoIosArrowDown />
+        </ToggleArrow>
         <MenuDropDown ref={dropdownRef} isActive={isActive}>
           <WatchedButton movieDetails={movieDetails} token={token} />
           <p></p>
@@ -49,6 +51,13 @@ const Menu = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+`;
+
+const ToggleArrow = styled.div`
+  font-size: 20px;
+  transform: ${(props) =>
+    props.isActive ? "rotate(-180deg)" : "rotate(0deg)"};
+  transition: all 0.5s ease;
 `;
 
 const MenuDropDown = styled.div`

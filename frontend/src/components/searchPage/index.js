@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
+
 import { getSearchList } from "../../services/TMDB-api";
 
-import styled from "styled-components";
-import { List, Text } from "../homePage/ListStyle";
-import MediaCard from "../MediaCard";
-import { useParams } from "react-router-dom";
+import MediaCard from "../mediaCard/index";
 import Home from "../HomeStyle";
+import { List, Text } from "../homePage/ListStyle";
 
 export default function SearchPage() {
   const [movieList, setMovieList] = useState([]);

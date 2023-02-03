@@ -3,7 +3,7 @@ import styled from "styled-components";
 import useToken from "../../hooks/useToken";
 import { getAllWatched } from "../../services/WatchedApi";
 import Loader from "../homePage/Loader";
-import MediaCard from "../MediaCard";
+import MediaCard from "../mediaCard/index";
 
 export default function WatchedMovies() {
   const [movieList, setMovieList] = useState([]);

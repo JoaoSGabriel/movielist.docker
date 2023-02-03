@@ -3,7 +3,7 @@ import styled from "styled-components";
 import useToken from "../../hooks/useToken";
 import { getAllPlanning } from "../../services/PlanningApi";
 import Loader from "../homePage/Loader";
-import MediaCard from "../MediaCard";
+import MediaCard from "../mediaCard/index";
 
 export default function PlanningMovies() {
   const [movieList, setMovieList] = useState([]);

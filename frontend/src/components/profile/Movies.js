@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getAllFavorits } from "../../services/FavoritApi";
 import LoaderDiv from "../LoaderDiv";
-import MediaCard from "../MediaCard";
+import MediaCard from "../mediaCard/index";
 
 export default function Movies({ token, profile }) {
   const [movies, setMovies] = useState([]);
