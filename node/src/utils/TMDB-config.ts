@@ -31,7 +31,7 @@ async function getUpcoming(page: string): Promise<MovieTrendingList> {
 
 async function getSearch(text: string): Promise<MovieTrendingList> {
   const data = await request.get(
-    `${api_adress}/search/movie?api_key=${api_key}&language=${language}&query=${text}&page=1&include_adult=true`
+    `${api_adress}/search/movie?api_key=${api_key}&language=${language}&query=${text}&page=1&include_adult=false`
   );
 
   return data.data;
