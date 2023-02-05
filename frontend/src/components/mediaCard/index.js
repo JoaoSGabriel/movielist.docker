@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Buttons from "./Buttons";
 
-export default function MediaCard({ info, style }) {
+export default function MediaCard({ info, style, buttons }) {
   const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
 
@@ -29,15 +29,32 @@ export default function MediaCard({ info, style }) {
   }
 
   return (
-    <Container
-      style={style}
-      onMouseEnter={() => setIsActive(true)}
-      onMouseLeave={() => setIsActive(false)}
-    >
-      <Buttons isActive={isActive} info={info} />
-      <img src={contentImage()} alt="loaded Banner" onClick={seeMore} />
-      {info?.tmdbTitle ? <h1>{info?.tmdbTitle}</h1> : <h1>{info?.title}</h1>}
-    </Container>
+    <>
+      {buttons ? (
+        <Container
+          style={style}
+          onMouseEnter={() => setIsActive(true)}
+          onMouseLeave={() => setIsActive(false)}
+        >
+          <Buttons isActive={isActive} info={info} />
+          <img src={contentImage()} alt="loaded Banner" onClick={seeMore} />
+          {info?.tmdbTitle ? (
+            <h1>{info?.tmdbTitle}</h1>
+          ) : (
+            <h1>{info?.title}</h1>
+          )}
+        </Container>
+      ) : (
+        <Container style={style}>
+          <img src={contentImage()} alt="loaded Banner" onClick={seeMore} />
+          {info?.tmdbTitle ? (
+            <h1>{info?.tmdbTitle}</h1>
+          ) : (
+            <h1>{info?.title}</h1>
+          )}
+        </Container>
+      )}
+    </>
   );
 }
 

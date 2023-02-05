@@ -1,19 +1,19 @@
 import api from "./api";
 
-export async function getTrendingList() {
-  const response = await api.get("/movies/toptrendig");
+export async function getTrendingList(page) {
+  const response = await api.get(`/movies/toptrendig?page=${page}`);
 
   return response.data;
 }
 
-export async function getRatedList() {
-  const response = await api.get("/movies/toprated");
+export async function getRatedList(page) {
+  const response = await api.get(`/movies/toprated?page=${page}`);
 
   return response.data;
 }
 
-export async function getUpcomingList() {
-  const response = await api.get("/movies/upcoming");
+export async function getUpcomingList(page) {
+  const response = await api.get(`/movies/upcoming?page=${page}`);
 
   return response.data;
 }

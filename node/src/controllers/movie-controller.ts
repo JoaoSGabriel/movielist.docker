@@ -3,8 +3,13 @@ import { Request, Response } from "express";
 import httpStatus from "http-status";
 
 export async function getTopTrendingList(req: Request, res: Response) {
+  const { page } = req.query;
+  if (typeof page !== "string") {
+    return res.sendStatus(httpStatus.BAD_REQUEST);
+  }
+
   try {
-    const data = await TMDB.getTrendingNow();
+    const data = await TMDB.getTrendingNow(page);
     res.status(httpStatus.OK).send(data);
   } catch (error) {
     console.log(error.message);
@@ -13,8 +18,13 @@ export async function getTopTrendingList(req: Request, res: Response) {
 }
 
 export async function getTopRatedList(req: Request, res: Response) {
+  const { page } = req.query;
+  if (typeof page !== "string") {
+    return res.sendStatus(httpStatus.BAD_REQUEST);
+  }
+
   try {
-    const data = await TMDB.getTopRated();
+    const data = await TMDB.getTopRated(page);
     res.status(httpStatus.OK).send(data);
   } catch (error) {
     console.log(error.message);
@@ -23,8 +33,13 @@ export async function getTopRatedList(req: Request, res: Response) {
 }
 
 export async function getUpcomingList(req: Request, res: Response) {
+  const { page } = req.query;
+  if (typeof page !== "string") {
+    return res.sendStatus(httpStatus.BAD_REQUEST);
+  }
+
   try {
-    const data = await TMDB.getUpcoming();
+    const data = await TMDB.getUpcoming(page);
     res.status(httpStatus.OK).send(data);
   } catch (error) {
     console.log(error.message);

@@ -5,25 +5,25 @@ const api_key = process.env.TMDB_SECRET;
 const api_adress = "https://api.themoviedb.org/3";
 const language = "pt-BR";
 
-async function getTrendingNow(): Promise<MovieTrendingList> {
+async function getTrendingNow(page: string): Promise<MovieTrendingList> {
   const data = await request.get(
-    `${api_adress}/movie/popular?api_key=${api_key}&language=${language}&page=1`
+    `${api_adress}/movie/popular?api_key=${api_key}&language=${language}&page=${page}`
   );
 
   return data.data;
 }
 
-async function getTopRated(): Promise<MovieTrendingList> {
+async function getTopRated(page: string): Promise<MovieTrendingList> {
   const data = await request.get(
-    `${api_adress}/movie/top_rated?api_key=${api_key}&language=${language}&page=1`
+    `${api_adress}/movie/top_rated?api_key=${api_key}&language=${language}&page=${page}`
   );
 
   return data.data;
 }
 
-async function getUpcoming(): Promise<MovieTrendingList> {
+async function getUpcoming(page: string): Promise<MovieTrendingList> {
   const data = await request.get(
-    `${api_adress}/movie/upcoming?api_key=${api_key}&language=${language}&page=1`
+    `${api_adress}/movie/upcoming?api_key=${api_key}&language=${language}&page=${page}`
   );
 
   return data.data;

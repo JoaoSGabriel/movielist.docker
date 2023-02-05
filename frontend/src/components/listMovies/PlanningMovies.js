@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import useToken from "../../hooks/useToken";
 import { getAllPlanning } from "../../services/PlanningApi";
-import Loader from "../homePage/Loader";
+import Loader from "../Loader";
 import MediaCard from "../mediaCard/index";
 
 export default function PlanningMovies() {

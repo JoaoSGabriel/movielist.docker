@@ -6,9 +6,9 @@ import Home from "../HomeStyle";
 export default function HomePage() {
   return (
     <Home>
-      <TrendingList>Mais comentados</TrendingList>
-      <RatedList>Mais populares</RatedList>
-      <UpcomingList>Lançamentos</UpcomingList>
+      <TrendingList />
+      <UpcomingList />
+      <RatedList />
     </Home>
   );
 }
