@@ -1,5 +1,7 @@
 # Movielist
 
+![Screenshot from 2023-02-06 15-25-22](https://user-images.githubusercontent.com/102863343/217061442-ee0d5e9d-e83b-45ba-902f-5ab7316a7a17.png)
+
 Um aplicativo para você acompanhar seus gostos cienmatográficos e compartilhá-los com seus amgigos! Construído com auxílio da API "The Movie Database".
 
 <a href="http://18.206.126.112/" target="_blank">Veja mais!</a>
